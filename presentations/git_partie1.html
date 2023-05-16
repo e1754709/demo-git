@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Formation Git - 20 août 2020</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <script>
+        window.addEventListener('load', function(){
+            var aud = document.querySelector("audio");
+            console.log(aud);
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                if(event.currentSlide.id && event.currentSlide.id == "histoire")
+                    {
+                        aud.
+						aud.play();
+                    }
+            } );
+            
+            
+        });
+    </script>
+    <style>
+        
+        .starwars_box {
+            position: absolute;
+            width: 26em;
+            height: 50em;
+            bottom: -15em;
+            left: 5%;
+            /*margin-left: 100px;*/
+            font-size: 25px;
+            font-weight: bold;
+            text-align: justify;
+            overflow: hidden;
+            transform-origin: 50% 100%;
+            transform: perspective(300px) rotateX(15deg);
+            color: #ff6;
+            
+            
+        }
+        .starwars h2
+        {
+            color: #ff6;
+            
+        }
+        
+        .present .starwars
+        {
+            position: absolute;
+            top:50%;
+            top: -100%;
+            animation: scroll 100s linear 2s ;
+            
+        }
+        
+        .present .starwars:hover
+        {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% { top: 100%; }
+            100% { top: -100%; }
+        }
+    </style>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+        
+        
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Formation Git</h1>
+                <h3>Système de gestion de version décentralisé</h3>
+				<p>Partie 1 - La base</p>
+                <p> <small>Présenté par <a href="http://www.jonathanmartel.info">Jonathan Martel</a></small> </p>
+            </section>
+            <section>
+                <h2>Plan de contenu</h2>
+                <ul>
+                    <li>
+                        <a href="#/quoi">Qu'est-ce que Git ?</a>
+                    </li>
+                    <li>
+                        <a href="#/histoire">Microscopique histoire de Git</a>
+                    </li>
+                    <li>
+                        <a href="#/comment">Comment utiliser Git (local et distant)</a>
+                    </li>
+                </ul>
+            </section>
+            <section>
+				<section>
+					<img src="img/Strips-_Old-650-final1.jpg">
+				</section>
+            	<section>
+					<img src="img/dossier_versopm.PNG">
+				</section>
+				
+            </section>
+            <section id="quoi">
+                <section>
+                    <h2>Qu'est-ce que Git ?</h2>
+                    <p>Une solution de contrôle de version qui permet</p>
+						<ul>
+							<li>de faciliter la gestion des versions du code source</li>
+							<li>la collaboration efficace en équipe (petite ou grande)</li>
+							<li>de documenter les modifications aux codes et aux projets</li>
+							<li>de publier des projets ouverts</li>
+							<li>d'augmenter la redondance et la sécurité des sources (backup)</li>
+						</ul>
+					
+                </section>
+				<section>
+                    <img width="600px" src="./img/squash-commit-1.png">
+                    <img  width="600px" src="img/historique_git.PNG">
+                </section>
+                <section>
+					
+                    <img width="480px" src="img/git-model@2x.png">
+                </section>
+                
+                <section>
+                    <h2>Ce que n'est pas Git</h2>
+					<ul>
+						<li>Une solution magique à tous les problèmes de gestion de code</li>
+						<li>Une méthode de travail stricte et sans faille</li>
+						<li>Une solution qui évite de communiquer efficacement avec les autres</li>
+						<li>Bien autres choses!</li>
+					</ul>
+                </section>
+                <section>
+                    <h2>Git pour vous ?</h2>
+					<p>Un outil important</p>
+					<ul>
+						<li>à utiliser dans votre processus de travail (<em>workflow</em>) quotidien.</li>
+						<li>que la grande majorité des organisations de développement Web utilisent</li>
+						<li>qui demande du temps et des efforts à apprendre</li>
+						<li>une source potentielle de stress et de difficultés (encore!)</li>
+						<li>qui pourra vous faire sauver du temps!</li>
+					</ul>
+                </section>
+                
+                
+            </section>
+            <section id="histoire">
+                <audio src="img/Star%20Wars%20Theme%20Song%20By%20John%20Williams.mp3" controls></audio>
+                <div class="starwars_box">
+                    <div class="starwars">
+                        <h2>Un nouvel espoir : Git</h2>
+                        <p>Il y a bien longtemps (2005), dans une galaxie pas très lointaine (San Francisco)...</p>
+                        <p>Suite à une tentative de rétro-ingénierie, un ennemi juré de la liberté (Larry McVoy) a décidé de révoquer la licence ouverte de son logiciel de gestion de code source, BitKeeper. Le rebel, Linus Torvalds, a alors réagi et a créé Git (signifie connard en argot britannique) comme solution de gestion du code du noyau de l'arme des rebels, Linux.</p>
+                        <p>D'autres rebels (ou pas) ont vu en Git un outil puissant (GitHub, BitBucket, Perforce, etc). Il est maintenant considéré comme un des systèmes de gestion de version les plus polyvalent, sécuritaire, fiable et simple (ou pas) à utiliser pour le développement de petits et de grands projets.</p>
+                        
+                    </div>
+                    
+                </div>
+            </section>
+            
+            <section id="comment">
+                 <section>
+                    <h2>Travailler avec Git</h2>
+                     <img width="600px" src="img/git-local-remotes.png"><br>
+					 <small>(source : http://blog.fjaraujo.com/index.php/2020/02/04/flujo-de-trabajo-basico-en-git/)</small>
+                    
+                </section>
+                <section>
+                    <h2>Comment utiliser Git ?</h2>
+                    <ul>
+                        <li>En ligne de commande (<em>cli</em>)<br> Puissant, illimité et complexe (un peu)
+                        </li>
+                        <li>Interface graphique <br> Simple (ou pas), qualité très variable et fonctions limitées.</li>
+						<li>Mode hybride <br> Le meilleur des deux mondes (ou pas)</li>
+                    </ul>
+                    
+                </section>
+				 <section>
+                    <h2>Une première démonstration</h2>
+                    <ol>
+                        <li>Vérifier l'état actuel du dépôt (git status)</li>
+                        <li>Modifier un fichier</li>
+						<li>Ajouter le fichier dans la "zone de staging" (git add)</li>
+						<li>Créer un nouveau fichier</li>
+						<li>Ajouter le nouveau fichier dans la zone de staging (git add)</li>
+						<li>Créer le commit avec un message clair (git commit)</li>
+						<li>Poursuivre le travail...</li>
+                    </ol>
+                </section>
+			</section>
+			<section id="remote">
+				<section>
+					<h2>Travailler avec un dépôt distant</h2>
+					<ul>
+						<li>Permet de protéger son code</li>
+						<li>Permet de publier son code</li>
+						<li>Permet de partager son code avec d'autres (collaboration)</li>
+						<li>Donne accès au code à partir de plusieurs ordinateurs</li>
+					</ul>
+					<p>Notez que le dépôt distant n'est qu'une copie du dossier de travail local, ce n'est pas une version de travail</p>
+				</section>
+				<section>
+					<h2>Travailler avec un dépôt distant (suite)</h2>
+					<img width="600px" src="img/git-local-remotes.png"><br>
+				</section>
+				<section>
+					<h2>Une deuxième démonstration</h2>
+                    <ol>
+                        <li>Vérifier l'état actuel du dépôt (git status)</li>
+                        <li>Synchroniser le dépôt local et le dépôt distant</li>
+						<li>Vérifier l'état actuel du dépôt (git status)</li>
+						<li>Travailler, ajouter, commiter...</li>
+						<li>Envoyer les modifications sur le dépôt distant</li>
+                    </ol>
+				</section>
+				<section>
+					<h2>Travailler avec un dépôt distant (suite)</h2>
+					<img width="600px" src="img/git-local-remotes.png"><br>
+				</section>
+            </section>
+			<!--<section id="autredemo">
+				<section>
+					<h2>Autres démonstrations</h2>
+					<ul>
+						<li>Installation et vérification de Git sur votre poste</li>
+						<li>Initialiser un dépôt ou récupérer un dépôt existant (remote)</li>
+						<li>Processus de travail quotidien (status, add, commit, etc)</li>
+						<li>Travailler avec un dépôt distant (Github)</li>
+						<li>Gestion des conflits</li>
+						<li>Initiation au travail collaboratif</li>
+						<li>Configuration du remote et du remote d'équipe</li>
+						<li>Processus de travail collaboratif (fetch, push, pull, merge, exécuter un pull request, etc)</li>
+					</ul>
+				</section>
+            </section>-->
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true
+            , // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                {
+                    src: 'plugin/markdown/marked.js'
+                }
+                , {
+                    src: 'plugin/markdown/markdown.js'
+                }
+                , {
+                    src: 'plugin/notes/notes.js'
+                    , async: true
+                }
+                , {
+                    src: 'plugin/highlight/highlight.js'
+                    , async: true
+                    , callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+				]
+        });
+    </script>
+</body>
+
+</html>

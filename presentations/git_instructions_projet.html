@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Projet Web 2 - Démarrer le projet avec Git</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+        
+        
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Projet Web 2</h1>
+                <h3>Comment démarrer le projet</h3>
+				<p></p>
+                <p> <small>Présenté par <a href="http://www.jonathanmartel.info">Jonathan Martel</a></small> </p>
+            </section>
+            <section>
+                <h2>Étapes</h2>
+                <ol>
+                    <li>
+                        Créer une organisation pour votre équipe(Github) 
+                    </li>
+                    <li>
+                        Forker le dépôt <a href="https://github.com/JonathanMartel/vino_etu">vino_etu</a> vers votre organisation
+                    </li>
+                    <li>
+                        Les membres font un fork du dépôt de l'organisation
+                    </li>
+                    <li>Chacun clone son dépôt distant</li>
+                    <li>Chacun configure upstream sur le local</li>
+                    <li>Lisez le readme.md pour vous familiariser avec la structure</li>
+                    <li>Voilà, vous êtes prêt à travailler!</li>
+                </ol>
+            </section>
+            <section>
+                <h2>Capsules vidéos de références : </h2>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=Zh_0IEOlhtU">Création d’une organisation sur Github (Youtube – 04:12)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=o5VbCOLoPmQ">Forker et cloner un dépôt d’équipe sur Github (Youtube – 02:02)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=I2j7QUjFqKc">Se mettre à jour avec le dépôt d’équipe et gérer les conflits de fusion (Youtube – 12:06)</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=W8EkMfkubBo">Mettre à jour upstream avec son dépôt (pull request) (Youtube – 05:01)</a></li>
+                </ul>
+
+            </section>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true
+            , // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                {
+                    src: 'plugin/markdown/marked.js'
+                }
+                , {
+                    src: 'plugin/markdown/markdown.js'
+                }
+                , {
+                    src: 'plugin/notes/notes.js'
+                    , async: true
+                }
+                , {
+                    src: 'plugin/highlight/highlight.js'
+                    , async: true
+                    , callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+				]
+        });
+    </script>
+</body>
+
+</html>

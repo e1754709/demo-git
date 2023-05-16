@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Formation Git - 20 août 2020</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <script>
+        window.addEventListener('load', function(){
+            var aud = document.querySelector("audio");
+            console.log(aud);
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                if(event.currentSlide.id && event.currentSlide.id == "histoire")
+                    {
+                        aud.
+						aud.play();
+                    }
+            } );
+            
+            
+        });
+    </script>
+    <style>
+        
+        .starwars_box {
+            position: absolute;
+            width: 26em;
+            height: 50em;
+            bottom: -15em;
+            left: 5%;
+            /*margin-left: 100px;*/
+            font-size: 25px;
+            font-weight: bold;
+            text-align: justify;
+            overflow: hidden;
+            transform-origin: 50% 100%;
+            transform: perspective(300px) rotateX(15deg);
+            color: #ff6;
+            
+            
+        }
+        .starwars h2
+        {
+            color: #ff6;
+            
+        }
+        
+        .present .starwars
+        {
+            position: absolute;
+            top:50%;
+            top: -100%;
+            animation: scroll 100s linear 2s ;
+            
+        }
+        
+        .present .starwars:hover
+        {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% { top: 100%; }
+            100% { top: -100%; }
+        }
+    </style>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+        
+        
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Formation Git</h1>
+                <h3>Système de gestion de version décentralisé </h3>
+				<p>Partie 2 - Travail collaboratif</p>
+                <p> <small>Présenté par <a href="http://www.jonathanmartel.info">Jonathan Martel</a></small> </p>
+            </section>
+            <section>
+                <h2>Plan de contenu</h2>
+                <ul>
+                    <li>
+                        <a href="#/base">Retour sur la base</a>
+                    </li>
+                    <li>
+                        <a href="#/collaboration">Collaboration avec Git</a>
+                    </li>
+                    <li>
+                        <a href="#/workflow">Méthode de travail en équipe(<em>workflow</em>)</a>
+                    </li>
+                </ul>
+            </section>
+			<section id="base">
+				<section>
+					<h2>Révision de la base</h2>
+					<img width="600px" src="img/git-local-remotes.png">
+				</section>
+				 <section>
+<pre><code class="bash"># Cloner un repository (juste si le dossier n'est pas déjà en local)
+> git clone URL_DU_DEPOT_DISTANT
+
+# Vérifier l'état du dépot (repository)
+> git status
+
+# Ajout du fichier à l'index (staging)
+> git add fichier.ext
+> git add .		#Pour tous les fichiers modifiés
+
+# Faire un commit
+> git commit -m "Message clair"
+
+# Permet d'ajouter les fichiers modifiés et effacés automatiquement 
+# au staging (sauf nouveaux fichiers)
+> git commit -a -m "Message clair" 
+</code></pre>
+				</section>
+					 <section>
+<pre><code class="bash"># Vérifier que le dépôt distant et local sont à jour
+> git remote update	# Met à jour les informations du dépot
+> git status	# Affiche les différences entre le local et le distant
+# Seulement si la différence entre local et distant n'apparait pas
+> git push -u origin master
+
+# Récupérer les modifications
+> git fetch origin master   #Recupère les données distantes
+> git branch -r             #Liste des branches distantes
+> git merge origin/master   #Fusionne les branches
+# Alternative 
+> git pull origin master    # fetch et merge ensemble
+
+# Envoyer les commits sur le distant
+> git push origin master    # Envoie les modifications vers le distant
+</code></pre>
+                </section>
+                <section>
+                <h2>En bref :</h2>
+                    <p>Avant de travailler</p>
+<pre><code class="bash">> git remote update	# Met à jour les informations du dépot
+> git status
+# Si remote est en retard (moins nécessaire)
+> git push origin master # Met le dépôt distant à jour
+
+# Si local est en retard (très important)
+> git pull origin master # Met le dépôt local à jour
+</code></pre>
+                    <p>travail, travail, travail...</p>
+<pre><code class="bash">> git add fichiers_modifies # ou "git add .", pour tous les fichiers
+> git commit -m "Voici ce que j'ai fait"
+</code></pre>
+                    <p>...jusqu'à la fin d'une période de travail</p>
+<pre><code class="bash">> git add . 
+> git commit -m "Voici ce que j'ai ajouté ou ce que j'ai corrigé"
+> git push origin master # Met le dépôt distant à jour
+</code></pre>
+                </section>
+			</section>
+			<section id="collaboration">
+                <section>
+                    <h2>Git en équipe</h2>
+                    <ul>
+                        <li>Permet de favoriser le partage de ressources</li>
+                        <li>Outils de coordination et de suivi des développements</li>
+                        <li>Architecture décentralisée et sécuritaire</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Architecture d'un projet utilisant un dépôt centralisé</h2> <img height="400px" src="img/SVN_Server_Client_Structure.png"> </section>
+                <section>
+                    <h2>Architecture d'un projet Git</h2> <img src="img/centr-decentr.png"> </section>
+                <section> <img src="img/svn-repo.png"> </section>
+                <section>
+                    <h2>SVN vs Git</h2>
+                    <ul>
+                        <li>SVN est vulnérable à la corruption du code</li>
+                        <li>SVN demande une planification de backup plus avancées</li>
+                        <li>SVN fait plus de charge sur le réseau</li>
+                        <li>SVN exige plus d'espace disque</li>
+                        <li>SVN dépend de l'intégrité complète du projet</li>
+                        <li>SVN restreint le travail collaboratif "non centralisé"</li>
+                    </ul>
+                </section>
+			</section>
+			<section>
+				<h2>Différents <em>workflow</em> Git</h2>
+				<ul>
+					<li><a href="#/depot_centralise">Dépot centralisé</a></li>
+					<li><a href="#/par_branche">Par branches de fonctionnalités/développeurs</a></li>
+					<li><a href="#/forking_workflow">Forking workflow</a></li>
+					<li><a href="#/gitflow">Gitflow - Vincent Driessen</a></li>
+					<li><a href="#/gitlab_flow">Gitlab flow</a></li>
+				</ul>
+			</section>
+            <section id="depot_centralise">
+                <section>
+                    <h2>Dépôt centralisé</h2> <img height="200px" src="img/workflow_centralise.svg">
+                    <p>Le processus de travail est similaire à celui de SVN. Il consiste à travailler avec un seul dépôt central qui est distant (<em>remote</em>) et à mettre à jour à tour de rôle le dépôt. À chaque mise à jour, les autres récupèrent les mises à jour avant de soumettre les leurs. </p>
+                </section>
+            </section>
+            <section id="par_branche">
+                <section>
+                    <h2>Par branches de fonctionnalités/développeurs</h2> <img src="img/workflow_feature.svg">
+                    <p>À partir d'un dépôt centralisé, chaque fonctionnalité est développée sur une branche spécifique par les développeurs. Chacun travaille sur une branche unique à lui.</p>
+                </section>
+            </section>
+            <section id="forking_workflow">
+                <section>
+                    <h2>Forking workflow</h2> <img height="200px" src="img/workflow_forking.svg">
+                    <p>Chaque développeur <em>fork</em> le projet sur son propre dépôt distant. Ensuite il développe les fonctionnalités en utilisant un modèle de branche personnalisé (au besoin). Lorsqu'il a terminé, il fait une requête de fusion sur le dépôt initiale (<em>upstream</em>). Le chef du projet ou les développeur séniors font la fusion sur le dépôt initial.</p>
+                </section>
+                <section>
+                    <ul>
+                        <li>Chaque développeur <em>fork</em> le dépôt à partir de l'interface du serveur, ils possèdent donc tous un dépôt distant individuel (privé)</li>
+                        <li>Ils acquièrent leur dépôt distant (<em>clone</em>)</li>
+                        <li>Les développeurs travaillent comme bon leur semble (<em>branch, add, commit, push, merge</em>, etc)</li>
+                        <li>Quand tout fonctionne, ils créent une requête de fusion sur le serveur (<em>pull request</em> sur github ou bitbucket)) avec le dépôt initiale (<em>upstream</em>) pour une branche spécifique</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Selon les droits du développeur, il peut lui-même gérer la requête et fusionner la branche ou bien un autre fera le travail de fusion (après correction et discussion avec le développeur)</li>
+                        <li>Une fois le dépôt initial mis à jour, les autres développeurs récupèrent la mise à jour (<em>fetch</em>) et fusionne leurs branches de développement locales (<em>merge</em>) et distantes (<em>push</em>)</li>
+                        <li>Personne ne travaille directement sur le dépôt central (<em>upstream</em>)</li>
+                    </ul>
+                </section>
+            </section>
+            <section id="gitflow">
+                <section>
+                    <h2>Gitflow - Vincent Driessen</h2> <img height="200px" src="img/git-model@2x.png">
+                    <p>Gitflow est un modèle de travail qui peut s'appliquer aux autres structures (centralisées, branche de fonction et forking). Il consiste à travailler sur de multiples branches et réserver la branche master pour les versions finales (<em>release</em>).</p>
+                </section>
+                <section> <img height="600px" src="img/git-model@2x.png"> </section>
+            </section>
+            <section id="gitlab_flow">
+                <section>
+                    <h2>Gitlab flow</h2> <img height="300px" src="img/workflow_gitlabflow.png">
+                    <p>Modèle de développement proposé par Gitlab. Il propose trois branches et un modèle de travail linéaire (dev, pre-prod, prod) qui convient à de nombreux projets
+                    </p>
+                </section>
+                <section> <img src="img/workflow_gitlabflow.png"> </section>
+            </section>
+            <section id="comment">
+				<section>
+					<h2>Configuration nécessaire pour le travail collaboratif</h2>
+					<ol>
+						<li>Créer ou avoir un compte github par membre</li>
+						<li>Créer une organisation (github) </li>
+                        <li>Ajouter les membres à l'équipe (avec les droits)</li>
+						<li>Initialiser le dépôt de l'équipe (vide, à partir d'un fork ou d'un dépot local existant) (upstream)</li>
+						<li>Chaque membre "fork" le dépôt de l'équipe (upstream) </li>
+						<li>Chaque membre clone leur dépot distant sur le local</li>
+						<li>Configurer le upstream sur le dépôt local</li>
+						<li>Vous êtes maintenant prêt à travailler et partager votre code (code, add, commit, push, pull, etc)!</li>
+					</ol>
+					<!-- Démo -->
+				</section>
+				<section>
+					<h2>Récupérer la dernière mise à jour du projet</h2>
+					<ol>
+						<li>S'assurer que tous les changements sont commités</li>
+						<li>S'assurer que le local et le remote sont synchronisés (pull/push avec origin)</li>
+						<li>Faire un pull de l'upstream</li>
+						<li>Corriger les conflits et finaliser la fusion (add, commit, merge)</li>
+						<li>Tester le code</li>
+						<li>Mettre à jour son remote</li>
+					</ol>
+					<!-- Démo -->
+				</section>
+                <section>
+<pre><code class="bash">
+> git status	# Pour s'assurer que le dépot local est propre
+
+# Récupérer les modifications de upstream
+> git pull upstream master   #Recupère les données distantes de upstream
+
+# Si le merge ne se fait pas automatiquement, 
+# réglez les conflits dans le code
+# Testez et dépannez le code
+# Quand tout est fonctionnel, terminé la fusion
+> git add . 
+> git commit
+
+# mettre à jour son remote
+> git push origin master    # Envoie les modifications vers le distant
+</code></pre>
+                </section>
+				<section>
+					<h2>Ajouter son code au projet de l'équipe</h2>
+					<ol>
+						<li>S'assurer que le local et le remote sont synchronisés (pull/push avec origin)</li>
+						<li>Récupérer la dernière mise à jour de upstream (pull upstream)</li>
+						<li>Corriger les conflits, le cas échéant (add, commit, merge, push)</li>
+						<li>Tester le fonctionnement du site (important!)</li>
+						<li>Mettre à jour son remote (git push)</li>
+						<li>Sur Github : créer une demande de pull request</li>
+						<li>Sur Github : accepter le pull request (auto-merging) </li>
+						<li>Aviser les autres membres de l'ajout</li>
+					</ol>
+					<!-- Démo -->
+				</section>
+                <section>
+<pre><code class="bash">> git status	# Pour s'assurer que le dépot local est synchronisé
+
+# Si local en retard
+> git pull origin master    # Recupère les données distantes
+# Si local en avance
+> git push origin master    # Envoie les données vers origin
+
+# Récupérer les modifications de upstream
+> git pull upstream master   # Si présent, corriger les conflits
+# Faire les tests (important!)
+
+# mettre à jour son remote
+> git push origin master   
+
+# Sur github, faire le pull-request et aviser les membres de l'ajout
+
+</code></pre>
+                </section>
+                <section>
+                    <h2>Résumé visuel</h2>
+                    <img src="img/centr-decentr_resume.png">
+                </section>
+			</section>
+
+			<!--<section id="autredemo">
+				<section>
+					<h2>Autres démonstrations</h2>
+					<ul>
+						<li>Installation et vérification de Git sur votre poste</li>
+						<li>Initialiser un dépôt ou récupérer un dépôt existant (remote)</li>
+						<li>Processus de travail quotidien (status, add, commit, etc)</li>
+						<li>Travailler avec un dépôt distant (Github)</li>
+						<li>Gestion des conflits</li>
+						<li>Initiation au travail collaboratif</li>
+						<li>Configuration du remote et du remote d'équipe</li>
+						<li>Processus de travail collaboratif (fetch, push, pull, merge, exécuter un pull request, etc)</li>
+					</ul>
+				</section>
+            </section>-->
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true
+            , // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [
+                {
+                    src: 'plugin/markdown/marked.js'
+                }
+                , {
+                    src: 'plugin/markdown/markdown.js'
+                }
+                , {
+                    src: 'plugin/notes/notes.js'
+                    , async: true
+                }
+                , {
+                    src: 'plugin/highlight/highlight.js'
+                    , async: true
+                    , callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+				]
+        });
+    </script>
+</body>
+
+</html>
